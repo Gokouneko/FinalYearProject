@@ -262,7 +262,7 @@ public class DataGenerate {
             out.writeObject(intervalSet);
             out.close();
             fileOut.close();
-            System.out.printf("Serialized data is saved in souse/Interval.ser");
+            System.out.println("Serialized data is saved in souse/Interval.ser");
         }catch(IOException e)
         {
             e.printStackTrace();

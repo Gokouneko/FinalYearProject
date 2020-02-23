@@ -6,6 +6,8 @@ import java.util.Collections;
 
 public class Algorithm {
     DataGenerate dataGenerate = new DataGenerate();
+
+    int range;
     ArrayList<ArrayList<Color>> classifiedColor = new ArrayList<>();
     ArrayList<ArrayList<Integer>> classifiedColorId = new ArrayList<>();
     ArrayList<ColoredInterval> coloredIntervalList = new ArrayList<>();
@@ -16,6 +18,7 @@ public class Algorithm {
 
     public void onlineAlgorithm() {
         dataGenerate.dataTypeChoose();
+        range = dataGenerate.range;
         double lMax = dataGenerate.range;
         double lMin = 1;
         int L = 1 + (int) Math.ceil(Math.log(lMax / lMin) / Math.log(2));
@@ -110,7 +113,6 @@ public class Algorithm {
         }
 
         saveInterval();
-
     }
 
     public boolean isOverlapping(Interval interval, int index) {
@@ -191,7 +193,7 @@ public class Algorithm {
             out.writeObject(coloredIntervalList);
             out.close();
             fileOut.close();
-            System.out.printf("Serialized data is saved in souse/coloredInterval.ser");
+            System.out.println("Serialized data is saved in souse/coloredInterval.ser");
         }catch(IOException e)
         {
             e.printStackTrace();

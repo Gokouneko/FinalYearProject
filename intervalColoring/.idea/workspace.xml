@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3c179f77-1941-4343-b14e-a4e2d47e19b1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/souse/Interval.ser" beforeDir="false" afterPath="$PROJECT_DIR$/souse/Interval.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/souse/coloredInterval.ser" beforeDir="false" afterPath="$PROJECT_DIR$/souse/coloredInterval.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/intervalColoring/Algorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/intervalColoring/Algorithm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/intervalColoring/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/intervalColoring/Color.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/intervalColoring/ColoredInterval.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/intervalColoring/ColoredInterval.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/intervalColoring/DataGenerate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/intervalColoring/DataGenerate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/intervalColoring/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/intervalColoring/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/intervalColoring/Results.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/intervalColoring/Results.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,12 +107,26 @@
       <workItem from="1582477629211" duration="1595000" />
       <workItem from="1582483511853" duration="48000" />
       <workItem from="1582483919771" duration="27000" />
-      <workItem from="1582486119891" duration="871000" />
+      <workItem from="1582486119891" duration="1316000" />
+      <workItem from="1582492346500" duration="8135000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="181" width="816" height="725" key="#Intentions" timestamp="1575742539801">
@@ -140,50 +153,54 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="719" y="399" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1581200245181" />
+    <state x="485" y="117" key="CommitChangelistDialog2" timestamp="1582500670305">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="485" y="117" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1582500670305" />
     <state x="740" y="278" key="FileChooserDialogImpl" timestamp="1582483940919">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="278" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1582483940919" />
-    <state width="1877" height="299" key="GridCell.Tab.0.bottom" timestamp="1582486980846">
+    <state width="1877" height="299" key="GridCell.Tab.0.bottom" timestamp="1582500645111">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="299" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1582486980846" />
-    <state width="1877" height="299" key="GridCell.Tab.0.center" timestamp="1582486980846">
+    <state width="1877" height="299" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1582500645111" />
+    <state width="1877" height="299" key="GridCell.Tab.0.center" timestamp="1582500645111">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="299" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1582486980846" />
-    <state width="1877" height="299" key="GridCell.Tab.0.left" timestamp="1582486980846">
+    <state width="1877" height="299" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1582500645111" />
+    <state width="1877" height="299" key="GridCell.Tab.0.left" timestamp="1582500645111">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="299" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1582486980846" />
-    <state width="1877" height="299" key="GridCell.Tab.0.right" timestamp="1582486980846">
+    <state width="1877" height="299" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1582500645111" />
+    <state width="1877" height="299" key="GridCell.Tab.0.right" timestamp="1582500645111">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="299" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1582486980846" />
-    <state width="1877" height="299" key="GridCell.Tab.1.bottom" timestamp="1582486980846">
+    <state width="1877" height="299" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1582500645111" />
+    <state width="1877" height="299" key="GridCell.Tab.1.bottom" timestamp="1582500392645">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="299" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1582486980846" />
-    <state width="1877" height="299" key="GridCell.Tab.1.center" timestamp="1582486980846">
+    <state width="1877" height="299" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1582500392645" />
+    <state width="1877" height="299" key="GridCell.Tab.1.center" timestamp="1582500392645">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="299" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1582486980846" />
-    <state width="1877" height="299" key="GridCell.Tab.1.left" timestamp="1582486980846">
+    <state width="1877" height="299" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1582500392645" />
+    <state width="1877" height="299" key="GridCell.Tab.1.left" timestamp="1582500392645">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="299" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1582486980846" />
-    <state width="1877" height="299" key="GridCell.Tab.1.right" timestamp="1582486980846">
+    <state width="1877" height="299" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1582500392645" />
+    <state width="1877" height="299" key="GridCell.Tab.1.right" timestamp="1582500392645">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="299" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1582486980846" />
+    <state width="1877" height="299" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1582500392645" />
     <state x="463" y="165" key="SettingsEditor" timestamp="1582486231302">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="463" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1582486231302" />
-    <state x="652" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1582486120241">
+    <state x="652" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1582492346375">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="652" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582486120241" />
+    <state x="652" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582492346375" />
     <state x="514" y="259" width="892" height="567" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1581190011855">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -200,21 +217,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1581198367771" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1581461950620">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1582493354693">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1581461950620" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1582493354693" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/intervalColoring/Results.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="intervalSet.get(0)" />
