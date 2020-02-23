@@ -1,7 +1,9 @@
 package intervalColoring;
 
 
-public class Color {
+import java.io.Serializable;
+
+public class Color implements Serializable {
     private int color;
     private int cost;
     public Color(int color, int cost){

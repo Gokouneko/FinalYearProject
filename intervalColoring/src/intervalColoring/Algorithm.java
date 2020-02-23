@@ -109,7 +109,7 @@ public class Algorithm {
             }
         }
 
-        saveInerval();
+        saveInterval();
 
     }
 
@@ -184,7 +184,7 @@ public class Algorithm {
         classifiedColor.get(index).add(newColor);
     }
 
-    public void saveInerval(){
+    public void saveInterval(){
         try{
             FileOutputStream fileOut = new FileOutputStream("souse/coloredInterval.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);

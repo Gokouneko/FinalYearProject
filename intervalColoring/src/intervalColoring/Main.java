@@ -6,7 +6,8 @@ public class Main {
 
         Algorithm algorithm = new Algorithm();
         algorithm.onlineAlgorithm();
-
+        Results results = new Results();
+        results.calSkylineCost();
     }
 
 }

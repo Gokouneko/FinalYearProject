@@ -33,7 +33,7 @@ public class DataGenerate {
                 break;
 
         }
-        saveInerval();
+        saveInterval();
 
     }
 
@@ -255,7 +255,7 @@ public class DataGenerate {
         }
 
     }
-    public void saveInerval(){
+    public void saveInterval(){
         try{
             FileOutputStream fileOut = new FileOutputStream("souse/Interval.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
