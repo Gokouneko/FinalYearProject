@@ -67,7 +67,7 @@ public class Algorithm {
                 if (length >= lengthId[i] && length < lengthId[i + 1]) {
                     Color color;
                     /* Find if there is some overlapping intervals */
-                    if (isOverlapping(uncoloredInterval, i)) {
+                    if (isOverlapping(uncoloredInterval, L-i-1)) {
 
                         if (classifiedColorId.get(i).size() == 0) {
                             index = 0;
@@ -77,10 +77,10 @@ public class Algorithm {
                             //What if there are not enough color in colorSet i??
                         }
                         try{
-                            color = classifiedColor.get(i).get(index);
+                            color = classifiedColor.get(L-i-1).get(index);
                         }catch(Exception e){
-                            expandColorSet(L, i);
-                            color = classifiedColor.get(i).get(index);
+                            expandColorSet(L, L-i-1);
+                            color = classifiedColor.get(L-i-1).get(index);
                             if(color.getColor()>classifiedcoloredIntervalList.size()){
                                 int term = color.getColor()-classifiedcoloredIntervalList.size();
                                 for(int j=0;j<=term;j++){
@@ -93,7 +93,7 @@ public class Algorithm {
                         classifiedColorId.get(i).add(index);
 
                     } else {
-                        ArrayList<ColoredInterval> notOverlappingList = getNotOverlappingList(uncoloredInterval, i);
+                        ArrayList<ColoredInterval> notOverlappingList = getNotOverlappingList(uncoloredInterval, L-i-1);
                         ArrayList<Integer> colorId = new ArrayList<>();
                         /* Find all the possible color the interval can be assigned */
                         for (ColoredInterval termInterval : notOverlappingList) {
