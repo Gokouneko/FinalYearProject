@@ -3,10 +3,12 @@ package intervalColoring;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Algorithm {
     DataGenerate dataGenerate = new DataGenerate();
-
+    Interface Interface = new Interface();
     int range;
     ArrayList<ArrayList<Color>> classifiedColor = new ArrayList<>();
     ArrayList<ArrayList<Integer>> classifiedColorId = new ArrayList<>();
@@ -16,22 +18,33 @@ public class Algorithm {
     public Algorithm() {
     }
 
-    public void onlineAlgorithm() {
+    public void algorithmChoose(){
         dataGenerate.dataTypeChoose();
+        Interface.algorithmChoose();
+        int type = Interface.algoirthmType;
+        switch (type){
+            case 1:
+                classfyGreedy();
+                break;
+            case 2:
+                ordinaryGreedy();
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+        }
+    }
+
+    public void classfyGreedy() {
         range = dataGenerate.range;
         double lMax = dataGenerate.range;
         double lMin = 1;
         int L = 1 + (int) Math.ceil(Math.log(lMax / lMin) / Math.log(2));
         ArrayList<Interval> uncoloredList = readInterval();
-        ArrayList<Color> colorSet = new ArrayList<>();
-
-        /* Generate color set */
-        for (int i = 0; i < uncoloredList.size(); i++) {
-            ArrayList<ColoredInterval> sameColor = new ArrayList<>();
-            Color color = new Color(i, i);
-            colorSet.add(color);
-            classifiedcoloredIntervalList.add(sameColor);
-        }
+        ArrayList<Color> colorSet = initColorSet(uncoloredList);
 
         /* Color classification */
         int count = (int) Math.ceil((double) uncoloredList.size() / (double) L);
@@ -67,21 +80,18 @@ public class Algorithm {
                 if (length >= lengthId[i] && length < lengthId[i + 1]) {
                     Color color;
                     /* Find if there is some overlapping intervals */
-                    if (isOverlapping(uncoloredInterval, L-i-1)) {
-
+                    if (isOverlapping(uncoloredInterval, classifiedColor.get(L-i-1))) {
                         if (classifiedColorId.get(i).size() == 0) {
                             index = 0;
                         } else {
-
                             index = classifiedColorId.get(i).get(classifiedColorId.get(i).size()-1)+1;
-                            //What if there are not enough color in colorSet i??
                         }
                         try{
                             color = classifiedColor.get(L-i-1).get(index);
                         }catch(Exception e){
                             expandColorSet(L, L-i-1);
                             color = classifiedColor.get(L-i-1).get(index);
-                            if(color.getColor()>classifiedcoloredIntervalList.size()){
+                            if(color.getColor()>=classifiedcoloredIntervalList.size()){
                                 int term = color.getColor()-classifiedcoloredIntervalList.size();
                                 for(int j=0;j<=term;j++){
                                     ArrayList<ColoredInterval> sameColor = new ArrayList<>();
@@ -89,11 +99,10 @@ public class Algorithm {
                                 }
                             }
                         }
-
                         classifiedColorId.get(i).add(index);
 
                     } else {
-                        ArrayList<ColoredInterval> notOverlappingList = getNotOverlappingList(uncoloredInterval, L-i-1);
+                        ArrayList<ColoredInterval> notOverlappingList = getNotOverlappingList(uncoloredInterval, classifiedColor.get(L-i-1));
                         ArrayList<Integer> colorId = new ArrayList<>();
                         /* Find all the possible color the interval can be assigned */
                         for (ColoredInterval termInterval : notOverlappingList) {
@@ -111,41 +120,99 @@ public class Algorithm {
                 }
             }
         }
-
         saveInterval();
     }
 
-    public boolean isOverlapping(Interval interval, int index) {
+    public void ordinaryGreedy(){
+        range = dataGenerate.range;
+        ArrayList<Interval> uncoloredList = readInterval();
+        ArrayList<Color> colorSet = initColorSet(uncoloredList);
+        ArrayList<Integer> coloredId = new ArrayList<>();
+        for(Interval uncoloredInterval: uncoloredList){
+            int index;
+            Color color;
+            if(isOverlapping(uncoloredInterval, colorSet)){
+                if(coloredId.size()==0){
+                    index = 0;
+                }else{
+                    index = coloredId.get(coloredId.size()-1)+1;
+                }
+                color = colorSet.get(index);
+                coloredId.add(index);
+            }else{
+                ArrayList<ColoredInterval> notOverlappingList = getNotOverlappingList(uncoloredInterval, colorSet);
+                ArrayList<Integer> colorId = new ArrayList<>();
+                /* Find all the possible color the interval can be assigned */
+                for (ColoredInterval termInterval : notOverlappingList) {
+                    colorId.add(termInterval.getColor().getColor());
+                }
+                /* Give the interval a smallest cost color it can be assigned */
+                int id = Collections.min(colorId);
+                color = new Color(id, id);
 
+            }
+
+            ColoredInterval coloredInterval = new ColoredInterval(uncoloredInterval, color);
+            int colorId = color.getColor();
+            classifiedcoloredIntervalList.get(colorId).add(coloredInterval);
+            coloredIntervalList.add(coloredInterval);
+        }
+        saveInterval();
+    }
+
+    public ArrayList<Color> initColorSet(ArrayList<Interval> uncoloredList){
+        ArrayList<Color> colorSet = new ArrayList<>();
+        for (int i = 0; i < uncoloredList.size(); i++) {
+            ArrayList<ColoredInterval> sameColor = new ArrayList<>();
+            Color color = new Color(i, i);
+            colorSet.add(color);
+            classifiedcoloredIntervalList.add(sameColor);
+        }
+        return colorSet;
+    }
+
+    public boolean isOverlapping(Interval interval, ArrayList<Color>colorSet) {
         boolean overlapping = true;
         int[] coordinate = interval.getCoordinate();
-        for (Color termColor : classifiedColor.get(index)) {
+        for (Color termColor : colorSet) {
             int colorId = termColor.getColor();
+            ArrayList<Integer> termList = new ArrayList<>();
             for (ColoredInterval termInterval : classifiedcoloredIntervalList.get(colorId)) {
                 int start = termInterval.getInterval().getCoordinate()[0];
                 int end = termInterval.getInterval().getCoordinate()[1];
                 /* Judge if there is an interval that not overlapping with the current interval */
                 if (start >= coordinate[1] || end <= coordinate[0]) {
-                    overlapping = false;
-                    break;
+                    termList.add(1);
                 }
+            }
+            if(termList.size()==classifiedcoloredIntervalList.get(colorId).size()&&termList.size()!=0){
+                overlapping = false;
+                break;
             }
         }
         return overlapping;
     }
 
-    public ArrayList<ColoredInterval> getNotOverlappingList(Interval interval, int index) {
+    public ArrayList<ColoredInterval> getNotOverlappingList(Interval interval, ArrayList<Color>colorSet) {
         ArrayList<ColoredInterval> notOverlappingList = new ArrayList<>();
         int[] coordinate = interval.getCoordinate();
-        for (Color termColor : classifiedColor.get(index)) {
+        for (Color termColor : colorSet) {
             int colorId = termColor.getColor();
+            ArrayList<Integer> termList = new ArrayList<>();
             for (ColoredInterval termInterval : classifiedcoloredIntervalList.get(colorId)) {
                 int start = termInterval.getInterval().getCoordinate()[0];
                 int end = termInterval.getInterval().getCoordinate()[1];
                 /* Find interval that not overlapping with the current interval */
                 if (start >= coordinate[1] || end <= coordinate[0]) {
+                    termList.add(1);
+
+                }
+            }
+            if(termList.size()==classifiedcoloredIntervalList.get(colorId).size()&&termList.size()!=0){
+                for (ColoredInterval termInterval : classifiedcoloredIntervalList.get(colorId)) {
                     notOverlappingList.add(termInterval);
                 }
+
             }
         }
         return notOverlappingList;

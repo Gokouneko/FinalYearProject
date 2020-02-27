@@ -8,6 +8,7 @@ public class Interface {
     int numberOfIntervals = 0;
     int probability = 0;
     int dataType = 0;
+    int algoirthmType = 0;
 
     public Interface() {
     }
@@ -42,6 +43,14 @@ public class Interface {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("The length of bottom line:");
         lengthOfBottom = keyboard.nextInt();
+    }
+
+    public void algorithmChoose(){
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Choose a type of algorithm");
+        System.out.println("1. Classfy-Greedy     2. Ordinary-Greedy     3. Offline1     4. Offine2");
+        algoirthmType = keyboard.nextInt();
+
     }
 
 

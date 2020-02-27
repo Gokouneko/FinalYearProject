@@ -13,7 +13,7 @@ public class Results {
     }
 
     public void calSkylineCost(){
-        algorithm.onlineAlgorithm();
+        algorithm.algorithmChoose();
         ArrayList<ColoredInterval> coloredIntervalSet = readInterval();
         int range = algorithm.range;
         int skylineCost = 0;
