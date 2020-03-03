@@ -21,5 +21,9 @@ public class ColoredInterval implements Serializable {
     public Interval getInterval() {
         return interval;
     }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
 }
 
