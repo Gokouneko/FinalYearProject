@@ -9,11 +9,17 @@ import java.util.Collections;
 
 public class Results {
     Algorithm algorithm = new Algorithm();
+    Interface Interface = new Interface();
     public Results(){
     }
 
+    public void run(){
+        algorithm.dataGenerating();
+        calSkylineCost();
+    }
+
     public void calSkylineCost(){
-        algorithm.algorithmChoose();
+
         ArrayList<ColoredInterval> coloredIntervalSet = readInterval();
         int range = algorithm.range;
         int skylineCost = 0;
@@ -39,6 +45,13 @@ public class Results {
             skylineCost += cost;
         }
         System.out.println("skyline cost = "+ skylineCost);
+
+        Interface.chooseLoop();
+        int change = Interface.change;
+        if(change==1){
+            algorithm.algorithmChoose();
+            calSkylineCost();
+        }
     }
 
 

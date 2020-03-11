@@ -18,8 +18,13 @@ public class Algorithm {
     public Algorithm() {
     }
 
-    public void algorithmChoose(){
+    public void dataGenerating(){
         dataGenerate.dataTypeChoose();
+        algorithmChoose();
+    }
+
+    public void algorithmChoose(){
+
         Interface.algorithmChoose();
         int type = Interface.algoirthmType;
         switch (type){
@@ -36,6 +41,8 @@ public class Algorithm {
                 assignTotally();
                 break;
         }
+        initVariable();
+
     }
 
     public void classfyGreedy() {
@@ -444,6 +451,16 @@ public class Algorithm {
         int newColorId = assignedColor + L;
         Color newColor = new Color(newColorId, newColorId);
         classifiedColor.get(index).add(newColor);
+    }
+
+    public void initVariable(){
+        classifiedColor = new ArrayList<>();
+        classifiedColorId = new ArrayList<>();
+        coloredIntervalList = new ArrayList<>();
+        classifiedcoloredIntervalList = new ArrayList<>();
+        notOverlapingList = new ArrayList<>();
+        classifiedIntervalId = new HashSet<>();
+        lengthList = new ArrayList<>();
     }
 
     public void saveInterval(){

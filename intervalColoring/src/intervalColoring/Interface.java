@@ -9,6 +9,7 @@ public class Interface {
     int probability = 0;
     int dataType = 0;
     int algoirthmType = 0;
+    int change = 0;
 
     public Interface() {
     }
@@ -48,11 +49,16 @@ public class Interface {
     public void algorithmChoose(){
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Choose a type of algorithm");
-        System.out.println("1. Classfy-Greedy     2. Ordinary-Greedy     3. Dynamic-Recolor     4. Offine2");
+        System.out.println("1. Classfy-Greedy     2. Ordinary-Greedy     3. Dynamic-Recolor     4. Assign-Color-Totally");
         algoirthmType = keyboard.nextInt();
-
     }
 
+    public void chooseLoop(){
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Do you want to choose another algorithm");
+        System.out.println("1. Yes     2. No");
+        change = keyboard.nextInt();
+    }
 
 
 }
