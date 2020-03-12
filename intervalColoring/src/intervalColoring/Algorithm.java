@@ -117,7 +117,7 @@ public class Algorithm {
                         }
                         /* Give the interval a smallest cost color it can be assigned */
                         index = Collections.min(colorId);
-                        color = colorSet.get(index);
+                        color = new Color(index,index);
 
                     }
                     ColoredInterval coloredInterval = new ColoredInterval(uncoloredInterval, color);
