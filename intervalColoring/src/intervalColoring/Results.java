@@ -46,7 +46,8 @@ public class Results {
         }
         System.out.println("Algorithm");
         for (ColoredInterval termInterval: coloredIntervalSet) {
-            System.out.println("Interval: ["+ termInterval.getInterval().getCoordinate()[0]+ " " +termInterval.getInterval().getCoordinate()[1]+"] color: "+termInterval.getColor().getColor());
+            System.out.println("Interval: ["+ termInterval.getInterval().getCoordinate()[0]+ " " +termInterval.getInterval().getCoordinate()[1]+"] length: "+
+                    termInterval.getInterval().getLength()+" color: "+ termInterval.getColor().getColor());
 
         }
         System.out.println("skyline cost = "+ skylineCost);
