@@ -17,7 +17,7 @@ public class Interface {
     public void dataChoose(){
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Choose a type of interval");
-        System.out.println("1. Random     2. Dense     3. Proper     4. Clique");
+        System.out.println("1. Random     2. Dense     3. Proper     4. Clique     5.Decrease");
         dataType = keyboard.nextInt();
     }
 
@@ -41,6 +41,12 @@ public class Interface {
     }
 
     public void properData(){
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("The length of bottom line:");
+        lengthOfBottom = keyboard.nextInt();
+    }
+
+    public void decreaseData(){
         Scanner keyboard = new Scanner(System.in);
         System.out.println("The length of bottom line:");
         lengthOfBottom = keyboard.nextInt();

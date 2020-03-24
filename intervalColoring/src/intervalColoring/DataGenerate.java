@@ -31,6 +31,8 @@ public class DataGenerate {
             case 4:
                 cliqueGenerate();
                 break;
+            case 5:
+                decreaseGenerate();
 
         }
         saveInterval();
@@ -255,6 +257,32 @@ public class DataGenerate {
         }
 
     }
+
+    public void decreaseGenerate(){
+        Interface.decreaseData();
+        range = Interface.lengthOfBottom;
+        number= (int)Math.ceil(range/2);
+        int start = 0;
+        int end = range;
+
+        while(number>0){
+            int[] coordinate = new int[2];
+            coordinate[0] = start;
+            coordinate[1] = end;
+            Interval interval = new Interval(coordinate);
+            intervalSet.add(interval);
+            start++;
+            end--;
+
+            number--;
+        }
+        Collections.reverse(intervalSet);
+        for (int i = 0; i < intervalSet.size(); i++) {
+            System.out.println(intervalSet.get(i).getCoordinate()[0] + " " + intervalSet.get(i).getCoordinate()[1]);
+        }
+
+    }
+
     public void saveInterval(){
         try{
             FileOutputStream fileOut = new FileOutputStream("souse/Interval.ser");
