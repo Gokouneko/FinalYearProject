@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Results {
     Algorithm algorithm = new Algorithm();
@@ -21,6 +23,8 @@ public class Results {
     public void calSkylineCost(){
 
         ArrayList<ColoredInterval> coloredIntervalSet = readInterval();
+        TreeMap<Integer, ArrayList<int[]>>skylineMap = new TreeMap<>();
+        ArrayList<int[]> skyLineList = new ArrayList<>();
         int range = algorithm.range;
         int skylineCost = 0;
         for(int i=0;i<range;i++){
@@ -32,7 +36,7 @@ public class Results {
                     termList.add(termInterval);
                 }
             }
-            int cost = 0;
+            int cost = 0,index = 0;
             if(termList.size()>1){
                 ArrayList<Integer>costList = new ArrayList<>();
                 for(ColoredInterval termInterval: termList){
@@ -42,6 +46,20 @@ public class Results {
             }else if(termList.size()==1){
                 cost = termList.get(0).getColor().getCost();
             }
+
+            int[] coordinate = new int[2];
+            coordinate[0] = i;
+            coordinate[1] = i + 1;
+
+            if (skylineMap.containsKey(cost)) {
+                skylineMap.get(cost).add(coordinate);
+            } else {
+                skyLineList = new ArrayList<>();
+                skyLineList.add(coordinate);
+                skylineMap.put(cost, skyLineList);
+            }
+
+
             skylineCost += cost;
         }
         System.out.println("Algorithm");
@@ -49,6 +67,32 @@ public class Results {
             System.out.println("Interval: ["+ termInterval.getInterval().getCoordinate()[0]+ " " +termInterval.getInterval().getCoordinate()[1]+"] length: "+
                     termInterval.getInterval().getLength()+" color: "+ termInterval.getColor().getColor());
 
+        }
+        for(Map.Entry<Integer, ArrayList<int[]>>entry: skylineMap.entrySet()){
+            System.out.println("color: "+ entry.getKey());
+            int start = entry.getValue().get(0)[0];
+            int end = entry.getValue().get(0)[1];
+            if (entry.getValue().size() == 1) {
+                System.out.print("["+start+" "+end+"]");
+            }else{
+                for(int i=1;i<entry.getValue().size();i++){
+                    if(entry.getValue().get(i)[0]==end){
+                        end = entry.getValue().get(i)[1];
+                        if(i==entry.getValue().size()-1){
+                            System.out.print("["+start+" "+end+"]");
+                        }
+                    }
+                    else{
+                        System.out.print("["+start+" "+end+"]");
+                        start = entry.getValue().get(i)[0];
+                        end = entry.getValue().get(i)[1];
+
+
+                    }
+                }
+            }
+
+            System.out.println();
         }
         System.out.println("skyline cost = "+ skylineCost);
 
