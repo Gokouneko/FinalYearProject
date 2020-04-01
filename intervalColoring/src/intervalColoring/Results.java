@@ -8,11 +8,61 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
+import java.awt.Color;
+import java.awt.BasicStroke;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.ui.ApplicationFrame;
+import org.jfree.ui.RefineryUtilities;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.xy.XYSeriesCollection;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 
-public class Results {
+
+public class Results extends ApplicationFrame{
     Algorithm algorithm = new Algorithm();
     Interface Interface = new Interface();
-    public Results(){
+    ArrayList<ColoredInterval> coloredIntervalSet = new ArrayList<>();
+
+    public Results(String applicationTitle , String chartTitle){
+        super(applicationTitle);
+        JFreeChart xylineChart = ChartFactory.createXYLineChart(
+                chartTitle ,
+                "Coordinate" ,
+                "Color" ,
+                createDataset() ,
+                PlotOrientation.VERTICAL ,
+                true , true , false);
+
+        ChartPanel chartPanel = new ChartPanel( xylineChart );
+        chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 367 ) );
+        final XYPlot plot = xylineChart.getXYPlot( );
+        NumberAxis numberaxis = (NumberAxis) plot.getRangeAxis();
+        numberaxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+        XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
+        renderer.setSeriesPaint( 0 , Color.RED );
+        renderer.setSeriesStroke( 0 , new BasicStroke( 2.0f ) );
+        plot.setRenderer( renderer );
+        setContentPane( chartPanel );
+
+
+    }
+
+    private XYDataset createDataset( ){
+        coloredIntervalSet = readInterval();
+        XYSeriesCollection dataset = new XYSeriesCollection();
+        for(ColoredInterval termInterval: coloredIntervalSet){
+            XYSeries interval = new XYSeries("interval");
+            interval.add(termInterval.getInterval().getCoordinate()[0],termInterval.getColor().getColor());
+            interval.add(termInterval.getInterval().getCoordinate()[1],termInterval.getColor().getColor());
+            dataset.addSeries(interval);
+        }
+        return dataset;
     }
 
     public void run(){
@@ -21,10 +71,9 @@ public class Results {
     }
 
     public void calSkylineCost(){
-
-        ArrayList<ColoredInterval> coloredIntervalSet = readInterval();
+        coloredIntervalSet = readInterval();
         TreeMap<Integer, ArrayList<int[]>>skylineMap = new TreeMap<>();
-        ArrayList<int[]> skyLineList = new ArrayList<>();
+        ArrayList<int[]> skyLineList;
         int range = algorithm.range;
         int skylineCost = 0;
         for(int i=0;i<range;i++){
