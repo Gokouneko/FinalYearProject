@@ -1,5 +1,7 @@
 package intervalColoring;
 
+import org.jfree.ui.RefineryUtilities;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,62 +10,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
-import java.awt.Color;
-import java.awt.BasicStroke;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.ui.ApplicationFrame;
-import org.jfree.ui.RefineryUtilities;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.xy.XYSeriesCollection;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 
-
-public class Results extends ApplicationFrame{
+public class Results {
     Algorithm algorithm = new Algorithm();
     Interface Interface = new Interface();
-    ArrayList<ColoredInterval> coloredIntervalSet = new ArrayList<>();
 
-    public Results(String applicationTitle , String chartTitle){
-        super(applicationTitle);
-        JFreeChart xylineChart = ChartFactory.createXYLineChart(
-                chartTitle ,
-                "Coordinate" ,
-                "Color" ,
-                createDataset() ,
-                PlotOrientation.VERTICAL ,
-                true , true , false);
-
-        ChartPanel chartPanel = new ChartPanel( xylineChart );
-        chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 367 ) );
-        final XYPlot plot = xylineChart.getXYPlot( );
-        NumberAxis numberaxis = (NumberAxis) plot.getRangeAxis();
-        numberaxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
-        XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
-        renderer.setSeriesPaint( 0 , Color.RED );
-        renderer.setSeriesStroke( 0 , new BasicStroke( 2.0f ) );
-        plot.setRenderer( renderer );
-        setContentPane( chartPanel );
-
-
-    }
-
-    private XYDataset createDataset( ){
-        coloredIntervalSet = readInterval();
-        XYSeriesCollection dataset = new XYSeriesCollection();
-        for(ColoredInterval termInterval: coloredIntervalSet){
-            XYSeries interval = new XYSeries("interval");
-            interval.add(termInterval.getInterval().getCoordinate()[0],termInterval.getColor().getColor());
-            interval.add(termInterval.getInterval().getCoordinate()[1],termInterval.getColor().getColor());
-            dataset.addSeries(interval);
-        }
-        return dataset;
-    }
+    public Results(){
+   }
 
     public void run(){
         algorithm.dataGenerating();
@@ -71,7 +24,7 @@ public class Results extends ApplicationFrame{
     }
 
     public void calSkylineCost(){
-        coloredIntervalSet = readInterval();
+        ArrayList<ColoredInterval> coloredIntervalSet = readInterval();
         TreeMap<Integer, ArrayList<int[]>>skylineMap = new TreeMap<>();
         ArrayList<int[]> skyLineList;
         int range = algorithm.range;
@@ -144,7 +97,12 @@ public class Results extends ApplicationFrame{
             System.out.println();
         }
         System.out.println("skyline cost = "+ skylineCost);
-
+        ShowChart chart = new ShowChart(
+                "IntervalColoring" ,
+                "Skyline");
+        chart.pack( );
+        RefineryUtilities.centerFrameOnScreen( chart );
+        chart.setVisible( true );
 
         Interface.chooseLoop();
         int change = Interface.change;

@@ -6,13 +6,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Results chart = new Results(
-                "IntervalColoring" ,
-                "Skyline");
-        chart.run();
-        chart.pack( );
-        RefineryUtilities.centerFrameOnScreen( chart );
-        chart.setVisible( true );
+        Results results = new Results();
+        results.run();
+
 
 
     }
