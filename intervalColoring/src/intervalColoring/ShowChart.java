@@ -32,7 +32,7 @@ public class ShowChart extends ApplicationFrame {
                 false , true , false);
 
         ChartPanel chartPanel = new ChartPanel( xylineChart );
-        chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 367 ) );
+        chartPanel.setPreferredSize( new java.awt.Dimension( 1120 , 734 ) );
         final XYPlot plot = xylineChart.getXYPlot( );
         NumberAxis numberaxis = (NumberAxis) plot.getRangeAxis();
         numberaxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());

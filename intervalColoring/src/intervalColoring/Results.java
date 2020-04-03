@@ -2,10 +2,7 @@ package intervalColoring;
 
 import org.jfree.ui.RefineryUtilities;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
@@ -60,8 +57,6 @@ public class Results {
                 skyLineList.add(coordinate);
                 skylineMap.put(cost, skyLineList);
             }
-
-
             skylineCost += cost;
         }
         System.out.println("Algorithm");
@@ -88,12 +83,12 @@ public class Results {
                         System.out.print("["+start+" "+end+"]");
                         start = entry.getValue().get(i)[0];
                         end = entry.getValue().get(i)[1];
-
-
+                        if(i+1==entry.getValue().size()){
+                            System.out.print("["+start+" "+end+"]");
+                        }
                     }
                 }
             }
-
             System.out.println();
         }
         System.out.println("skyline cost = "+ skylineCost);
@@ -111,7 +106,6 @@ public class Results {
             calSkylineCost();
         }
     }
-
 
     public ArrayList<ColoredInterval> readInterval() {
         ArrayList<ColoredInterval> coloredIntervalSet = null;
