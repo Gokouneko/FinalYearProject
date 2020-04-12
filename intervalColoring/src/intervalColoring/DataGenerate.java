@@ -32,7 +32,7 @@ public class DataGenerate {
                 cliqueGenerate();
                 break;
             case 5:
-                decreaseGenerate();
+                specialGenerate();
 
         }
         saveInterval();
@@ -258,25 +258,25 @@ public class DataGenerate {
 
     }
 
-    public void decreaseGenerate(){
-        Interface.decreaseData();
+    public void specialGenerate(){
+        Interface.otherData();
+        number = Interface.numberOfIntervals;
         range = Interface.lengthOfBottom;
-        number= (int)Math.ceil(range/2);
-        int start = 0;
-        int end = range;
-
+        int start = (int) (Math.random() * range);
+        int end = start + 1;
         while(number>0){
+            if(number==1){
+                start = 0;
+                end = range;
+            }
             int[] coordinate = new int[2];
             coordinate[0] = start;
             coordinate[1] = end;
             Interval interval = new Interval(coordinate);
             intervalSet.add(interval);
-            start++;
-            end--;
-
             number--;
         }
-        Collections.reverse(intervalSet);
+
         for (int i = 0; i < intervalSet.size(); i++) {
             System.out.println(intervalSet.get(i).getCoordinate()[0] + " " + intervalSet.get(i).getCoordinate()[1]);
         }
